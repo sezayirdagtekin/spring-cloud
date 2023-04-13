@@ -1,6 +1,11 @@
 server:
   port: 8888
 spring:
+#never do this. this is unsecure
+  security:
+    user:
+      name: sezayir
+      password: test123 
   cloud:
     config:
       server:
