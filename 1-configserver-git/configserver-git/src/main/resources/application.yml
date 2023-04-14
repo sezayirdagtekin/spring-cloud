@@ -16,4 +16,4 @@ spring:
           search-paths:
           - station*
         encrypt:
-          enabled: true
+          enabled: false
