@@ -15,3 +15,5 @@ spring:
           uri: https://github.com/sezayirdagtekin/spring-cloud-config
           search-paths:
           - station*
+        encrypt:
+          enabled: true
