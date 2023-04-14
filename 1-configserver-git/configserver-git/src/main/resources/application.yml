@@ -1,5 +1,7 @@
 server:
   port: 8888
+encrypt:
+  key: AKFEABYXWRKLM
 spring:
 #never do this. this is unsecure
   security:
