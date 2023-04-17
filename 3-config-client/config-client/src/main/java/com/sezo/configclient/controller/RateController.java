@@ -1,10 +1,12 @@
 package com.sezo.configclient.controller;
 
 import org.springframework.beans.factory.annotation.Value;
+import org.springframework.cloud.context.config.annotation.RefreshScope;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.GetMapping;
 
+@RefreshScope
 @Controller
 public class RateController {
 
@@ -26,9 +28,7 @@ public class RateController {
 		m.addAttribute("tollstart", tollstart);
 		m.addAttribute("lanes", lanecount);
 		m.addAttribute("connstring", connstring);
-		
 
 		return "rateview";
-
 	}
 }
