@@ -3,6 +3,7 @@ package com.sezo.function.runner;
 import java.util.ArrayList;
 import java.util.function.Consumer;
 import java.util.function.Function;
+import java.util.function.Supplier;
 
 import org.springframework.context.annotation.Bean;
 import org.springframework.context.annotation.Configuration;
@@ -49,11 +50,16 @@ public class TollStationRunner {
 			return Mono.empty();
 		};
 	}
-	
+
 	@Bean
-	Consumer<Flux<TollRecord>> 	 processListTollRecordReactive(){
-		return value-> {
-			value.subscribe(toll-> System.out.println(toll.getLicensePlate()));
+	Consumer<Flux<TollRecord>> processListTollRecordReactive() {
+		return value -> {
+			value.subscribe(toll -> System.out.println(toll.getLicensePlate()));
 		};
+	}
+
+	@Bean
+	Supplier<Flux<TollStation>> reactiveGetTollStation() {
+		return () -> Flux.fromIterable(gettollStations());
 	}
 }
