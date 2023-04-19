@@ -10,11 +10,12 @@ import org.springframework.context.annotation.Configuration;
 import com.sezo.function.model.TollRecord;
 import com.sezo.function.model.TollStation;
 
-@Configuration
-public class TollStationRunner  {
+import reactor.core.publisher.Mono;
 
-	
-	private static ArrayList<TollStation>  gettollStations() {
+@Configuration
+public class TollStationRunner {
+
+	private static ArrayList<TollStation> gettollStations() {
 
 		ArrayList<TollStation> tollStations = new ArrayList<TollStation>();
 		tollStations.add((new TollStation("100A", 112.5f, 2)));
@@ -24,19 +25,27 @@ public class TollStationRunner  {
 	}
 
 	@Bean
-	 Function<String, TollStation> retrieveStation() {
+	Function<String, TollStation> retrieveStation() {
 		System.out.println("Spring cloud retrieveStation function!");
 		return value -> {
 			System.out.println("received request for station - " + value);
-			return gettollStations().stream().filter(toll -> value.equals((toll.getStationId()))).findAny().orElse(null);
-		};
-	}
-	
-	@Bean
-	Consumer<TollRecord> processTollRecord(){
-		return value-> {
-			System.out.println("Received toll for car with licence plate-"+value.getLicensePlate());
+			return gettollStations().stream().filter(toll -> value.equals((toll.getStationId()))).findAny()
+					.orElse(null);
 		};
 	}
 
+	@Bean
+	Consumer<TollRecord> processTollRecord() {
+		return value -> {
+			System.out.println("Received toll for car with licence plate-" + value.getLicensePlate());
+		};
+	}
+
+	@Bean
+	Function<TollRecord, Mono<Void>> processTollRecordReactive() {
+		return value -> {
+			System.out.println("Received toll for car with licence plate-" + value.getLicensePlate());
+			return Mono.empty();
+		};
+	}
 }
