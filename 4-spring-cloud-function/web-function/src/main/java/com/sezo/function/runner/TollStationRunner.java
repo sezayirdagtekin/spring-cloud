@@ -10,6 +10,7 @@ import org.springframework.context.annotation.Configuration;
 import com.sezo.function.model.TollRecord;
 import com.sezo.function.model.TollStation;
 
+import reactor.core.publisher.Flux;
 import reactor.core.publisher.Mono;
 
 @Configuration
@@ -46,6 +47,13 @@ public class TollStationRunner {
 		return value -> {
 			System.out.println("Received toll for car with licence plate-" + value.getLicensePlate());
 			return Mono.empty();
+		};
+	}
+	
+	@Bean
+	Consumer<Flux<TollRecord>> 	 processListTollRecordReactive(){
+		return value-> {
+			value.subscribe(toll-> System.out.println(toll.getLicensePlate()));
 		};
 	}
 }
