@@ -1,11 +1,13 @@
 package com.sezo.function.runner;
 
 import java.util.ArrayList;
+import java.util.function.Consumer;
 import java.util.function.Function;
 
 import org.springframework.context.annotation.Bean;
 import org.springframework.context.annotation.Configuration;
 
+import com.sezo.function.model.TollRecord;
 import com.sezo.function.model.TollStation;
 
 @Configuration
@@ -27,6 +29,13 @@ public class TollStationRunner  {
 		return value -> {
 			System.out.println("received request for station - " + value);
 			return gettollStations().stream().filter(toll -> value.equals((toll.getStationId()))).findAny().orElse(null);
+		};
+	}
+	
+	@Bean
+	Consumer<TollRecord> processTollRecord(){
+		return value-> {
+			System.out.println("Received toll for car with licence plate-"+value.getLicensePlate());
 		};
 	}
 
