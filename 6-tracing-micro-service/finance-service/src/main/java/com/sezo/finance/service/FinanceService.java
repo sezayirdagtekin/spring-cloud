@@ -21,7 +21,7 @@ public class FinanceService {
 	static {
 
 		salaries.add(new Salary(1L, 12000.0, 18));
-		salaries.add(new Salary(3L, 24000.0, 22));
+		salaries.add(new Salary(2L, 24000.0, 22));
 		salaries.add(new Salary(3L, 360000.0, 30));
 	}
 }

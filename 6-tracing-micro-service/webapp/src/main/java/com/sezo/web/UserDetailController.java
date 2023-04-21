@@ -33,8 +33,13 @@ public class UserDetailController {
 								.bodyToMono(Salary.class)
 								.block();
 
-		UserDetail userDetail = UserDetail.builder().userId(user.getId()).name(user.getName())
-				.surname(user.getSurname()).grossSalary(salary.getGrossSalary()).taxRate(salary.getTaxRate()).build();
+		UserDetail userDetail =UserDetail.builder()
+										 .userId(user.getId())
+										 .name(user.getName())
+										 .surname(user.getSurname())
+										 .grossSalary(salary.getGrossSalary())
+										 .taxRate(salary.getTaxRate())
+										 .build();
 
 		return userDetail;
 
