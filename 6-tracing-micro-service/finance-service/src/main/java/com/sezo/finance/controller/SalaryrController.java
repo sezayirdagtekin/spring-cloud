@@ -1,4 +1,4 @@
-package com.sezo.finance;
+package com.sezo.finance.controller;
 
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.web.bind.annotation.GetMapping;
@@ -17,7 +17,7 @@ public class SalaryrController {
 	FinanceService service;
 
 	@GetMapping("/id/{id}")
-	public Salary getUserSalary(@PathVariable Long id) {
+	public Salary getUserSalary(@PathVariable Long id) throws InterruptedException {
 		return service.getUserSalaryById(id);
 	}
 
