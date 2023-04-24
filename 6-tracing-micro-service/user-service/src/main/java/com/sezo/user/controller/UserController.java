@@ -1,4 +1,4 @@
-package com.sezo.user;
+package com.sezo.user.controller;
 
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.web.bind.annotation.GetMapping;

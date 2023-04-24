@@ -9,15 +9,19 @@ import org.springframework.web.bind.annotation.RestController;
 import com.sezo.finance.model.Salary;
 import com.sezo.finance.service.FinanceService;
 
+import lombok.extern.log4j.Log4j2;
+
 @RestController
 @RequestMapping("/salary")
+@Log4j2
 public class SalaryrController {
 
 	@Autowired
 	FinanceService service;
 
 	@GetMapping("/id/{id}")
-	public Salary getUserSalary(@PathVariable Long id) throws InterruptedException {
+	public Salary getUserSalaryById(@PathVariable Long id) throws InterruptedException {
+		log.debug("getUserSalaryById userid="+id);
 		return service.getUserSalaryById(id);
 	}
 
